@@ -16,9 +16,9 @@ namespace PhotoStockApp.Repository
         public ICollection<Author> GetAll()
         {
             string sql = "SELECT * FROM Authors";
-            List<Author> g = _context.Authors.FromSqlRaw(sql).ToList();
+            List<Author> res = _context.Authors.FromSqlRaw(sql).ToList();
 
-            return g as ICollection<Author>;
+            return res;
         }
 
     }
