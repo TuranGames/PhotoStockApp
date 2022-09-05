@@ -34,21 +34,19 @@ namespace PhotoStockApp.Repository
             string sql = "SELECT * FROM " + typeof(T).Name + "s WHERE Id = " + id;
             List<T> g = _context.Set<T>().FromSqlRaw(sql).Include("Author").ToList<T>();
 
-            return g[0] as T;
+            return g[0];
         }
         public ICollection<T> GetOffset()
         {
             string sql = "SELECT * FROM " + typeof(T).Name + "s ORDER BY Id DESC";
-            List<T> g = _context.Set<T>().FromSqlRaw(sql).Include("Author").ToList<T>();
 
-            return g as ICollection<T>;
+            return _context.Set<T>().FromSqlRaw(sql).Include("Author").ToList<T>();
         }
         public ICollection<T> GetAll()
         {
             string sql = "SELECT * FROM " + typeof(T).Name + "s";
-            List<T> g = _context.Set<T>().FromSqlRaw(sql).Include("Author").ToList<T>();
 
-            return g as ICollection<T>;
+            return _context.Set<T>().FromSqlRaw(sql).Include("Author").ToList<T>();
         }
         public bool Exists(int Id)
         {
