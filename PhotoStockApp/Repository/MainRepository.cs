@@ -32,9 +32,8 @@ namespace PhotoStockApp.Repository
         public T Get(int id)
         {
             string sql = "SELECT * FROM " + typeof(T).Name + "s WHERE Id = " + id;
-            List<T> g = _context.Set<T>().FromSqlRaw(sql).Include("Author").ToList<T>();
 
-            return g[0];
+            return _context.Set<T>().FromSqlRaw(sql).Include("Author").ToList<T>().FirstOrDefault();
         }
         public ICollection<T> GetOffset()
         {
